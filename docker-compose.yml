@@ -1,0 +1,41 @@
+version: "2.4"
+services:
+
+  yelb-db:
+    build: ./yelb-db
+    networks:
+      - yelb-network
+
+  redis-server:
+    image: redis:4.0.2
+    networks:
+      - yelb-network
+
+  yelb-appserver:
+    build: ./yelb-appserver
+    networks:
+      - yelb-network
+    environment:
+      - REDIS_SERVER=redis-server
+    depends_on:
+      - redis-server
+      - yelb-db
+  yelb-ui:
+    build: ./yelb-ui
+    depends_on:
+      - yelb-appserver
+    ports:
+      - 80:80
+    networks:
+      - yelb-network
+
+  test:
+    build: ./test
+    depends_on:
+      - yelb-ui 
+    networks:
+      - yelb-network
+
+networks:
+  yelb-network:
+    driver: bridge

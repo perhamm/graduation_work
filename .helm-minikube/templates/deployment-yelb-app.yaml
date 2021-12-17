@@ -1,0 +1,74 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: yelb-appserver
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    component: appserver
+  name: yelb-appserver
+spec:
+  progressDeadlineSeconds: 180
+  replicas: {{ .Values.yelb_app_replicas }}
+  selector:
+    matchLabels:
+      app: yelb-appserver
+      chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+      release: {{ .Release.Name }}
+      heritage: {{ .Release.Service }}
+      component: appserver
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  revisionHistoryLimit: 5
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: yelb-appserver
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
+        component: appserver
+    spec:
+      containers:
+      - name: yelb-appserver
+        image: {{ .Values.image_yelb_app }}:{{ .Values.imageTag_yelb_app }}
+        env:
+        - name: REDIS_SERVER
+          value: "redis-server-haproxy"
+        resources:
+{{ toYaml .Values.yelb_app.resources | indent 10 }}
+        ports:
+        - containerPort: 4567
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 30
+          httpGet:
+            path: /api/getvotes
+            port: 4567
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        livenessProbe:
+          initialDelaySeconds: 90
+          failureThreshold: 3
+          httpGet:
+            path: /api/getvotes
+            port: 4567
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 20
+
+
+
+

@@ -11,6 +11,7 @@
 
 require 'sinatra'
 require 'aws-sdk-dynamodb' 
+require 'pry'
 require_relative 'modules/pageviews'
 require_relative 'modules/getvotes'
 require_relative 'modules/restaurant'
@@ -29,10 +30,11 @@ disable :protection
 # there is no expectations to be able to use DDB for test/dev 
  
 configure :production do
-  set :redishost, "redis-server"
+  set :redishost => ENV['REDIS_SERVER']
   set :port, 4567
   set :yelbdbhost => "yelb-db"
   set :yelbdbport => 5432
+  set :logging, Logger::DEBUG
   set :yelbddbrestaurants => ENV['YELB_DDB_RESTAURANTS']
   set :yelbddbcache => ENV['YELB_DDB_CACHE']
   set :awsregion => ENV['AWS_REGION']

@@ -1,5 +1,5 @@
 FROM node:12.22
-MAINTAINER massimo@it20.info
+
 
 WORKDIR /
 
@@ -27,6 +27,7 @@ RUN rm -r /clarity-seed/src/app/about
 WORKDIR /clarity-seed/src
 
 RUN npm install  
+RUN npm install node-sass@latest
 
 RUN ng build --environment=prod --output-path=./prod/dist/ -aot -vc -cc -dop --buildOptimizer
 RUN ng build --environment=test --output-path=./test/dist/
@@ -34,7 +35,7 @@ RUN ng build --environment=dev --output-path=./dev/dist/
 
 
 FROM nginx:1.17.10
-MAINTAINER massimo@it20.info
+
 
 WORKDIR /
 ADD startup.sh startup.sh
