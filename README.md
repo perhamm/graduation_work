@@ -1,6 +1,3 @@
-Забираем раннер с graduation_work_iac (Enable runner for this project)
-
-
 #### Yelb architecture
 
 The current architecture layout is pretty straightforward. 
