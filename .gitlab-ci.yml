@@ -4,7 +4,7 @@ stages:
 Kubectl:
   stage: kubectl
   image:
-    name: bitnami/kubectl:1.18.2
+    name: bitnami/kubectl:1.21.5
     entrypoint: [""]
   variables:
     KUBECONFIG: /tmp/.kubeconfig
