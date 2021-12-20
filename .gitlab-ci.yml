@@ -9,6 +9,6 @@ Kubectl:
     - kubectl config set-credentials ci --token=$K8S_CI_TOKEN
     - kubectl config set-context ci --cluster=k8s --user=ci
     - kubectl config use-context ci
-    - kubectl get nodes
+    - kubectl get pods -n prod
   only:
     - main
