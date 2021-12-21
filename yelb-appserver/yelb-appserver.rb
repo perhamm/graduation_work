@@ -80,6 +80,7 @@ end
 
 $yelbdbhost = settings.yelbdbhost
 $redishost = settings.redishost
+$yelbdbpass = settings.yelbdbpass
 # the yelbddbcache, yelbdbrestaurants and the awsregion variables are only intended to use in the serverless scenario (DDB)
 if (settings.yelbddbcache != nil) then $yelbddbcache = settings.yelbddbcache end 
 if (settings.yelbddbrestaurants != nil) then $yelbddbrestaurants = settings.yelbddbrestaurants end 
