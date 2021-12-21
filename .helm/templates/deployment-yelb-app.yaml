@@ -41,6 +41,10 @@ spec:
         env:
         - name: REDIS_SERVER
           value: "redis-server-haproxy"
+        - name: PG_SERVER
+          value: {{ .Values.sql_host }}
+        - name: PG_PASS
+          value: {{ .Values.sql_password }}
         resources:
 {{ toYaml .Values.yelb_app.resources | indent 10 }}
         ports:
