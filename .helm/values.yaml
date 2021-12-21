@@ -1,10 +1,10 @@
 
 image_yelb_app: registry.gitlab.com/perhamm/graduation_work
-imageTag_yelb_app: main.433761190.yelb-appserver
+imageTag_yelb_app: main.434376651.yelb-appserver
 image_yelb_ui: registry.gitlab.com/perhamm/graduation_work
-imageTag_yelb_ui: main.433761190.yelb-ui
-yelb_ui_replicas: 1
-yelb_app_replicas: 1
+imageTag_yelb_ui: main.434376651.yelb-ui
+yelb_ui_replicas: 2
+yelb_app_replicas: 2
 
 
 yelb_ui:
@@ -32,7 +32,7 @@ ingress:
 redis-ha:
   haproxy:
     enabled: true
-    replicas: 1
+    replicas: 2
     serviceAccount:
       create: false
     hardAntiAffinity: false

@@ -3,6 +3,7 @@ require_relative 'modules/restaurant'
 def restaurant_adapter(event:, context:)
     $yelbdbhost = ENV['yelbdbhost']
     $yelbdbport = 5432
+    $yelbdbpass = ENV['PG_PASS']
     $yelbddbrestaurants = ENV['yelbddbrestaurants']
     $awsregion = ENV['awsregion']
     restaurantname = event['pathParameters']['restaurant']
