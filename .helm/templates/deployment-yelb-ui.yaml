@@ -1,0 +1,71 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: yelb-ui
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    component: ui
+  name: yelb-ui
+spec:
+  progressDeadlineSeconds: 180
+  replicas: {{ .Values.yelb_ui_replicas }}
+  selector:
+    matchLabels:
+      app: yelb-ui
+      chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+      release: {{ .Release.Name }}
+      heritage: {{ .Release.Service }}
+      component: ui
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  revisionHistoryLimit: 5
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: yelb-ui
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
+        component: ui
+    spec:
+      containers:
+      - name: yelb-ui
+        image: {{ .Values.image_yelb_ui }}:{{ .Values.imageTag_yelb_ui }}
+        resources:
+{{ toYaml .Values.yelb_ui.resources | indent 10 }}
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 30
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        livenessProbe:
+          initialDelaySeconds: 90
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 20
+
+
+
+

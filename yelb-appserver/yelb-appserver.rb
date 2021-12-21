@@ -32,7 +32,8 @@ disable :protection
 configure :production do
   set :redishost => ENV['REDIS_SERVER']
   set :port, 4567
-  set :yelbdbhost => "yelb-db"
+  set :yelbdbhost => ENV['PG_SERVER']
+  set :yelbdbpass => ENV['PG_PASS']
   set :yelbdbport => 5432
   set :logging, Logger::DEBUG
   set :yelbddbrestaurants => ENV['YELB_DDB_RESTAURANTS']
