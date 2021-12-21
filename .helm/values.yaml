@@ -3,10 +3,9 @@ image_yelb_app: registry.gitlab.com/perhamm/graduation_work
 imageTag_yelb_app: main.433761190.yelb-appserver
 image_yelb_ui: registry.gitlab.com/perhamm/graduation_work
 imageTag_yelb_ui: main.433761190.yelb-ui
-yelb_ui_replicas: 2
-yelb_app_replicas: 2
-sql_host: "10.26.32.3"
-sql_password: "blablabla"
+yelb_ui_replicas: 1
+yelb_app_replicas: 1
+
 
 yelb_ui:
   resources:

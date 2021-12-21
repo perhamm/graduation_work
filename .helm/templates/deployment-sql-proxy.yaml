@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sql-proxy-deployment
+  labels:
+    app: sql-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sql-proxy
+  template:
+    metadata:
+      labels:
+        app: sql-proxy
+    spec:
+      containers:
+      - name: sql-proxy
+        image: gcr.io/cloudsql-docker/gce-proxy:1.27.1
+        env:
+        - name: INSTANCE_CONNECTION_NAME
+          valueFrom:
+            secretKeyRef:
+              name: db
+              key: connectionname
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+          limits:
+            cpu: 100m
+            memory: 200Mi
+        command: ["/cloud_sql_proxy",
+                  "-instances=$(INSTANCE_CONNECTION_NAME)=tcp:0.0.0.0:5432",
+                  "-credential_file=/secrets/cloudsql/terraform.json"]
+        volumeMounts:
+        - name: cloudsql-instance-credentials
+          mountPath: /secrets/cloudsql
+          readOnly: true
+      volumes:
+      - name: cloudsql-instance-credentials
+        secret:
+          secretName: cloudsql-instance-credentials
