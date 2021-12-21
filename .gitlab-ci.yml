@@ -55,6 +55,16 @@ deploy:
     - kubectl config set-credentials ci --token=$K8S_CI_TOKEN
     - kubectl config set-context ci --cluster=k8s --user=ci
     - kubectl config use-context ci
-    - kubectl get pods -n prod
+    - helm upgrade --install graduationapp .helm
+        -f .helm/values.yaml
+        --set image_yelb_app=$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+        --set imageTag_yelb_app=$CI_COMMIT_REF_SLUG.$CI_PIPELINE_ID.yelb-appserver
+        --set image_yelb_ui=$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+        --set imageTag_yelb_ui=$CI_COMMIT_REF_SLUG.$CI_PIPELINE_ID.yelb-ui
+        --wait
+        --timeout 300s
+        --atomic
+        --debug
+        --namespace prod
   only:
     - main
