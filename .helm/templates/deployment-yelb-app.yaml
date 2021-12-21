@@ -57,7 +57,7 @@ spec:
         readinessProbe:
           failureThreshold: 30
           httpGet:
-            path: /api/getvotes
+            path: /api/hostname
             port: 4567
             scheme: HTTP
           periodSeconds: 10
@@ -67,7 +67,7 @@ spec:
           initialDelaySeconds: 90
           failureThreshold: 3
           httpGet:
-            path: /api/getvotes
+            path: /api/hostname
             port: 4567
             scheme: HTTP
           periodSeconds: 10
