@@ -38,10 +38,10 @@ spec:
         resources:
           requests:
             cpu: 100m
-            memory: 200Mi
+            memory: 500Mi
           limits:
             cpu: 100m
-            memory: 200Mi
+            memory: 500Mi
         command: ["/cloud_sql_proxy",
                   "-instances=$(INSTANCE_CONNECTION_NAME)=tcp:0.0.0.0:5432",
                   "-credential_file=/secrets/cloudsql/terraform.json"]

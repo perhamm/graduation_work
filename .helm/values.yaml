@@ -11,19 +11,19 @@ yelb_ui:
   resources:
     requests:
       cpu: 100m
-      memory: 200Mi
+      memory: 500Mi
     limits:
       cpu: 100m
-      memory: 200Mi
+      memory: 500Mi
 
 yelb_app:
   resources:
     requests:
       cpu: 100m
-      memory: 200Mi
+      memory: 500Mi
     limits:
       cpu: 100m
-      memory: 200Mi
+      memory: 500Mi
 
 
 ingress:
