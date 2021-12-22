@@ -13,7 +13,7 @@ yaml_linting:
     name: cytopia/yamllint:1.23
     entrypoint: ["/bin/ash", "-c"]
   script:
-    - yamllint .helm/templates
+    - 'yamllint -d "{rules: {indentation: {spaces: 2, indent-sequences: consistent}}}" .helm/templates'
 
 helmlint:
   stage: helmlint
