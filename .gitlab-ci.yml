@@ -1,9 +1,17 @@
 stages:
+  - helmlint
   - build
   - test
   - cleanup
   - push
   - deploy
+
+helmlint:
+  stage: helmlint
+  image: centosadmin/kubernetes-helm:3.1.2
+  script:
+    - helm lint .helm
+
 
 build:
   stage: build
