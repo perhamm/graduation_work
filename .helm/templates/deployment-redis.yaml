@@ -63,6 +63,6 @@ spec:
           timeoutSeconds: 5
       restartPolicy: Always
       volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: redis-volume
+      - name: data
+        persistentVolumeClaim:
+          claimName: redis-volume

@@ -27,5 +27,5 @@ spec:
                   number: 8080
   tls:
     - hosts:
-      - {{.Values.ingress.host}}
+        - {{.Values.ingress.host}}
       secretName: yelb
