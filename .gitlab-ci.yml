@@ -9,9 +9,11 @@ stages:
 
 yaml_linting:
   stage: yaml_linting
-  image: docker:20.10.7
+  image:
+    name: cytopia/yamllint:1.23
+    entrypoint: ["/bin/ash", "-c"]
   script:
-    - docker run -v $pwd/.helm/template:/dir stackrox/kube-linter lint /dir
+    - yamllint .helm/template
 
 helmlint:
   stage: helmlint
