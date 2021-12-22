@@ -4,9 +4,9 @@ kind: Service
 metadata:
   labels:
     app: yelb-appserver
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    release: {{.Release.Name}}
+    heritage: {{.Release.Service}}
     component: appserver
   name: yelb-appserver
 spec:
@@ -15,8 +15,8 @@ spec:
       targetPort: 4567
   selector:
     app: yelb-appserver
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    release: {{.Release.Name}}
+    heritage: {{.Release.Service}}
     component: appserver
   type: ClusterIP

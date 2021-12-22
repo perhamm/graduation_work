@@ -4,9 +4,9 @@ kind: Ingress
 metadata:
   labels:
     app: ingress
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    release: {{.Release.Name}}
+    heritage: {{.Release.Service}}
     component: ingress
   name: ingress
   annotations:
@@ -15,7 +15,7 @@ metadata:
 
 spec:
   rules:
-    - host: {{ .Values.ingress.host }}
+    - host: {{.Values.ingress.host}}
       http:
         paths:
           - path: /
@@ -27,6 +27,6 @@ spec:
                   number: 8080
   tls:
     - hosts:
-      - {{ .Values.ingress.host }}
+      - {{.Values.ingress.host}}
       secretName: yelb
 

@@ -4,20 +4,20 @@ kind: Deployment
 metadata:
   labels:
     app: yelb-ui
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    release: {{.Release.Name}}
+    heritage: {{.Release.Service}}
     component: ui
   name: yelb-ui
 spec:
   progressDeadlineSeconds: 180
-  replicas: {{ .Values.yelb_ui_replicas }}
+  replicas: {{.Values.yelb_ui_replicas}}
   selector:
     matchLabels:
       app: yelb-ui
-      chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-      release: {{ .Release.Name }}
-      heritage: {{ .Release.Service }}
+      chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+      release: {{.Release.Name}}
+      heritage: {{.Release.Service}}
       component: ui
   strategy:
     rollingUpdate:
@@ -30,16 +30,16 @@ spec:
       creationTimestamp: null
       labels:
         app: yelb-ui
-        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-        release: {{ .Release.Name }}
-        heritage: {{ .Release.Service }}
+        chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+        release: {{.Release.Name}}
+        heritage: {{.Release.Service}}
         component: ui
     spec:
       containers:
       - name: yelb-ui
-        image: {{ .Values.image_yelb_ui }}:{{ .Values.imageTag_yelb_ui }}
+        image: {{.Values.image_yelb_ui}}:{{.Values.imageTag_yelb_ui}}
         resources:
-{{ toYaml .Values.yelb_ui.resources | indent 10 }}
+{{toYaml .Values.yelb_ui.resources | indent 10}}
         ports:
         - containerPort: 80
           name: http

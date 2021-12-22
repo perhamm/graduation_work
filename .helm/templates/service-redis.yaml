@@ -4,9 +4,9 @@ kind: Service
 metadata:
   labels:
     app: redis
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    release: {{.Release.Name}}
+    heritage: {{.Release.Service}}
     component: redis
   name: redis-server
 spec:
@@ -15,8 +15,8 @@ spec:
       targetPort: 6379
   selector:
     app: redis
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    release: {{.Release.Name}}
+    heritage: {{.Release.Service}}
     component: app
   type: ClusterIP

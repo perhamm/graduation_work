@@ -4,9 +4,9 @@ kind: Service
 metadata:
   labels:
     app: yelb-ui
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    release: {{.Release.Name}}
+    heritage: {{.Release.Service}}
     component: ui
   name: yelb-ui
 spec:
@@ -15,8 +15,8 @@ spec:
       targetPort: 80
   selector:
     app: yelb-ui
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    release: {{.Release.Name}}
+    heritage: {{.Release.Service}}
     component: ui
   type: ClusterIP

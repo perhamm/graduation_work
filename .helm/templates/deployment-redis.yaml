@@ -4,9 +4,9 @@ kind: Deployment
 metadata:
   labels:
     app: redis
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    release: {{.Release.Name}}
+    heritage: {{.Release.Service}}
     component: app
   name: redis
 spec:
@@ -14,9 +14,9 @@ spec:
   selector:
     matchLabels:
       app: redis
-      chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-      release: {{ .Release.Name }}
-      heritage: {{ .Release.Service }}
+      chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+      release: {{.Release.Name}}
+      heritage: {{.Release.Service}}
       component: app
   strategy:
     rollingUpdate:
@@ -27,9 +27,9 @@ spec:
     metadata:
       labels:
         app: redis
-        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-        release: {{ .Release.Name }}
-        heritage: {{ .Release.Service }}
+        chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+        release: {{.Release.Name}}
+        heritage: {{.Release.Service}}
         component: app
     spec:
       containers:

@@ -4,9 +4,9 @@ apiVersion: v1
 metadata:
   labels:
     app: redis
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    release: {{.Release.Name}}
+    heritage: {{.Release.Service}}
     component: redis
   name: redis-volume
 spec:

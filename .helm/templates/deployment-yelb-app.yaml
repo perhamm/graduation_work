@@ -4,20 +4,20 @@ kind: Deployment
 metadata:
   labels:
     app: yelb-appserver
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    release: {{.Release.Name}}
+    heritage: {{.Release.Service}}
     component: appserver
   name: yelb-appserver
 spec:
   progressDeadlineSeconds: 180
-  replicas: {{ .Values.yelb_app_replicas }}
+  replicas: {{.Values.yelb_app_replicas}}
   selector:
     matchLabels:
       app: yelb-appserver
-      chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-      release: {{ .Release.Name }}
-      heritage: {{ .Release.Service }}
+      chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+      release: {{.Release.Name}}
+      heritage: {{.Release.Service}}
       component: appserver
   strategy:
     rollingUpdate:
@@ -30,14 +30,14 @@ spec:
       creationTimestamp: null
       labels:
         app: yelb-appserver
-        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-        release: {{ .Release.Name }}
-        heritage: {{ .Release.Service }}
+        chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+        release: {{.Release.Name}}
+        heritage: {{.Release.Service}}
         component: appserver
     spec:
       containers:
       - name: yelb-appserver
-        image: {{ .Values.image_yelb_app }}:{{ .Values.imageTag_yelb_app }}
+        image: {{.Values.image_yelb_app}}:{{.Values.imageTag_yelb_app}}
         env:
         - name: REDIS_SERVER
           value: "redis-server"
@@ -49,7 +49,7 @@ spec:
               name: db
               key: password
         resources:
-{{ toYaml .Values.yelb_app.resources | indent 10 }}
+{{toYaml .Values.yelb_app.resources | indent 10}}
         ports:
         - containerPort: 4567
           name: http
