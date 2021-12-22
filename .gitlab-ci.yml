@@ -11,7 +11,7 @@ yaml_linting:
   stage: yaml_linting
   image: docker:20.10.7
   script:
-    - docker run -v .helm/template:/dir stackrox/kube-linter lint /dir
+    - docker run -v $pwd/.helm/template:/dir stackrox/kube-linter lint /dir
 
 helmlint:
   stage: helmlint
