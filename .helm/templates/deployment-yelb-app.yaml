@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: yelb-appserver
-        image: {{.Values.image_yelb_app}}:{{.Values.imageTag_yelb_app}}
+        image: "{{.Values.image_yelb_app}}:{{.Values.imageTag_yelb_app}}"
         env:
         - name: REDIS_SERVER
           value: "redis-server"

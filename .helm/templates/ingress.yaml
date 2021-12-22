@@ -29,4 +29,3 @@ spec:
     - hosts:
       - {{.Values.ingress.host}}
       secretName: yelb
-

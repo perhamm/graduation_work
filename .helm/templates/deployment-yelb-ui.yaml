@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: yelb-ui
-        image: {{.Values.image_yelb_ui}}:{{.Values.imageTag_yelb_ui}}
+        image: "{{.Values.image_yelb_ui}}:{{.Values.imageTag_yelb_ui}}"
         resources:
 {{toYaml .Values.yelb_ui.resources | indent 10}}
         ports:
@@ -65,8 +65,3 @@ spec:
           timeoutSeconds: 5
       restartPolicy: Always
       terminationGracePeriodSeconds: 20
-
-
-
-
-
