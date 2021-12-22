@@ -4,3 +4,7 @@ description: Yelb chart for Kubernetes
 type: application
 version: 0.1.0
 appVersion: "1.1.0"
+dependencies:
+- name: redis-ha
+  version: ~4.14.8
+  repository: "https://dandydeveloper.github.io/charts"

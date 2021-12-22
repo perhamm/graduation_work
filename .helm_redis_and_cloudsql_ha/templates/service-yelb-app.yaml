@@ -1,21 +1,22 @@
-kind: Service
+---
 apiVersion: v1
+kind: Service
 metadata:
   labels:
-    app: sql-proxy
+    app: yelb-appserver
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-    component: sql-proxy
-  name: yelb-db
+    component: appserver
+  name: yelb-appserver
 spec:
+  ports:
+    - port: 4567
+      targetPort: 4567
   selector:
-    app: sql-proxy
+    app: yelb-appserver
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-    component: sql-proxy
-  ports:
-    - protocol: TCP
-      port: 5432
-      targetPort: 5432
+    component: appserver
+  type: ClusterIP

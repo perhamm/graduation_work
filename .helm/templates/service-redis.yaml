@@ -1,21 +1,22 @@
-kind: Service
+---
 apiVersion: v1
+kind: Service
 metadata:
   labels:
-    app: sql-proxy
+    app: redis
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-    component: sql-proxy
-  name: yelb-db
+    component: redis
+  name: redis-server
 spec:
+  ports:
+    - port: 6379
+      targetPort: 6379
   selector:
-    app: sql-proxy
+    app: redis
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-    component: sql-proxy
-  ports:
-    - protocol: TCP
-      port: 5432
-      targetPort: 5432
+    component: app
+  type: ClusterIP

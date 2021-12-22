@@ -1,0 +1,73 @@
+
+image_yelb_app: registry.gitlab.com/perhamm/graduation_work
+imageTag_yelb_app: main.434433405.yelb-appserver
+image_yelb_ui: registry.gitlab.com/perhamm/graduation_work
+imageTag_yelb_ui: main.434433405.yelb-ui
+yelb_ui_replicas: 2
+yelb_app_replicas: 2
+
+
+yelb_ui:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 200Mi
+    limits:
+      cpu: 100m
+      memory: 200Mi
+
+yelb_app:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 200Mi
+    limits:
+      cpu: 100m
+      memory: 200Mi
+
+
+ingress:
+  host: test3.club
+
+redis-ha:
+  haproxy:
+    enabled: true
+    replicas: 2
+    serviceAccount:
+      create: false
+    hardAntiAffinity: false
+    resources:
+      requests:
+        cpu: 100m
+        memory: 200Mi
+      limits:
+        cpu: 100m
+        memory: 200Mi
+  serviceAccount:
+    create: false
+  persistentVolume:
+    enabled: false
+  fullnameOverride: redis-server
+  rbac:
+    create: false
+  hardAntiAffinity: false
+  redis:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 200Mi
+      limits:
+        cpu: 100m
+        memory: 200Mi
+  sentinel:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 200Mi
+      limits:
+        cpu: 100m
+        memory: 200Mi
+
+  
+
+    

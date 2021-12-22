@@ -4,27 +4,15 @@ metadata:
   name: sql-proxy-deployment
   labels:
     app: sql-proxy
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-    component: sql-proxy
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: sql-proxy
-      chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-      release: {{ .Release.Name }}
-      heritage: {{ .Release.Service }}
-      component: sql-proxy
   template:
     metadata:
       labels:
         app: sql-proxy
-        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-        release: {{ .Release.Name }}
-        heritage: {{ .Release.Service }}
-        component: sql-proxy
     spec:
       containers:
       - name: sql-proxy

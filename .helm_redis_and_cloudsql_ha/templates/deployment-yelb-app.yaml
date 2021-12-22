@@ -40,7 +40,7 @@ spec:
         image: {{ .Values.image_yelb_app }}:{{ .Values.imageTag_yelb_app }}
         env:
         - name: REDIS_SERVER
-          value: "redis-server"
+          value: "redis-server-haproxy"
         - name: PG_SERVER
           value: "yelb-db"
         - name: PG_PASS

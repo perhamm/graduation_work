@@ -3,22 +3,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: yelb-appserver
+    app: yelb-ui
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-    component: appserver
-  name: yelb-appserver
+    component: ui
+  name: yelb-ui
 spec:
   progressDeadlineSeconds: 180
-  replicas: {{ .Values.yelb_app_replicas }}
+  replicas: {{ .Values.yelb_ui_replicas }}
   selector:
     matchLabels:
-      app: yelb-appserver
+      app: yelb-ui
       chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
       release: {{ .Release.Name }}
       heritage: {{ .Release.Service }}
-      component: appserver
+      component: ui
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -29,36 +29,26 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        app: yelb-appserver
+        app: yelb-ui
         chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
         release: {{ .Release.Name }}
         heritage: {{ .Release.Service }}
-        component: appserver
+        component: ui
     spec:
       containers:
-      - name: yelb-appserver
-        image: {{ .Values.image_yelb_app }}:{{ .Values.imageTag_yelb_app }}
-        env:
-        - name: REDIS_SERVER
-          value: "redis-server"
-        - name: PG_SERVER
-          value: "yelb-db"
-        - name: PG_PASS
-          valueFrom:
-            secretKeyRef:
-              name: db
-              key: password
+      - name: yelb-ui
+        image: {{ .Values.image_yelb_ui }}:{{ .Values.imageTag_yelb_ui }}
         resources:
-{{ toYaml .Values.yelb_app.resources | indent 10 }}
+{{ toYaml .Values.yelb_ui.resources | indent 10 }}
         ports:
-        - containerPort: 4567
+        - containerPort: 80
           name: http
           protocol: TCP
         readinessProbe:
           failureThreshold: 30
           httpGet:
-            path: /api/hostname
-            port: 4567
+            path: /
+            port: 80
             scheme: HTTP
           periodSeconds: 10
           successThreshold: 1
@@ -67,8 +57,8 @@ spec:
           initialDelaySeconds: 90
           failureThreshold: 3
           httpGet:
-            path: /api/hostname
-            port: 4567
+            path: /
+            port: 80
             scheme: HTTP
           periodSeconds: 10
           successThreshold: 1
