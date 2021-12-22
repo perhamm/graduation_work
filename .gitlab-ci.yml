@@ -1,10 +1,17 @@
 stages:
+  - yaml_linting
   - helmlint
   - build
   - test
   - cleanup
   - push
   - deploy
+
+yaml_linting:
+  stage: lint
+  image: sdesbure/yamllint
+  script:
+    - yamllint .helm/templates
 
 helmlint:
   stage: helmlint
