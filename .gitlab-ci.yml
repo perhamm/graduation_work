@@ -1,5 +1,5 @@
 stages:
-  - yaml_linting
+  # - yaml_linting
   - helmlint
   - build
   - test
@@ -7,13 +7,13 @@ stages:
   - push
   - deploy
 
-yaml_linting:
-  stage: yaml_linting
-  image:
-    name: cytopia/yamllint:1.23
-    entrypoint: ["/bin/ash", "-c"]
-  script:
-    - yamllint .helm/templates
+# yaml_linting:
+#   stage: yaml_linting
+#   image:
+#     name: cytopia/yamllint:1.23
+#     entrypoint: ["/bin/ash", "-c"]
+#   script:
+#     - yamllint .helm/templates
 
 helmlint:
   stage: helmlint
