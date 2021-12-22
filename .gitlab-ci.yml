@@ -10,8 +10,7 @@ stages:
 yaml_linting:
   stage: yaml_linting
   image: stackrox/kube-linter:0.2.5-8-g8231fb5924
-  script:
-    - kube-linter lint .helm/templates
+  command: ["lint .helm/template"]
 
 helmlint:
   stage: helmlint
