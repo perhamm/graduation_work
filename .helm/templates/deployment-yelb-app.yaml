@@ -49,7 +49,7 @@ spec:
               name: db
               key: password
         resources:
-{{toYaml .Values.yelb_app.resources | indent 10}}
+          {{toYaml .Values.yelb_app.resources | nindent 10}}
         ports:
         - containerPort: 4567
           name: http
