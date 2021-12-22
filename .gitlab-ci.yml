@@ -8,7 +8,7 @@ stages:
   - deploy
 
 yaml_linting:
-  stage: lint
+  stage: yaml_linting
   image: sdesbure/yamllint
   script:
     - yamllint .helm/templates
