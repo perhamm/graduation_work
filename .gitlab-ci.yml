@@ -1,5 +1,5 @@
 stages:
-  - yaml_linting
+#  - yaml_linting
   - helmlint
   - build
   - test
@@ -7,11 +7,11 @@ stages:
   - push
   - deploy
 
-yaml_linting:
-  stage: yaml_linting
-  image: sdesbure/yamllint
-  script:
-    - yamllint .helm/templates
+#yaml_linting:
+#  stage: yaml_linting
+#  image: sdesbure/yamllint
+#  script:
+#    - yamllint .helm/templates
 
 helmlint:
   stage: helmlint
