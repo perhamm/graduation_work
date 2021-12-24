@@ -4,7 +4,7 @@ imageTag_yelb_app: main.434478449.yelb-appserver
 image_yelb_ui: registry.gitlab.com/perhamm/graduation_work
 imageTag_yelb_ui: main.434478449.yelb-ui
 yelb_ui_replicas: 2
-yelb_app_replicas: 2
+yelb_app_replicas: 3
 
 
 yelb_ui:
